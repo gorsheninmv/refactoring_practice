@@ -22,6 +22,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\001_Refactoring.csproj" />
+      <ProjectReference Include="..\Refactoring\001_Refactoring.csproj" />
     </ItemGroup>
 
 </Project>

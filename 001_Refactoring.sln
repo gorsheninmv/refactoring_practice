@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "001_Refactoring", "001_Refactoring.csproj", "{EDC528A1-5B1D-49EB-A86D-C9534A4F741B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefactoringUnitTests", "RefactoringUnitTests\RefactoringUnitTests.csproj", "{71247A66-609A-4675-A0D4-836512275CD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "001_Refactoring", "Refactoring\001_Refactoring.csproj", "{EDC528A1-5B1D-49EB-A86D-C9534A4F741B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +11,14 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EDC528A1-5B1D-49EB-A86D-C9534A4F741B}.Debug|x86.ActiveCfg = Debug|x86
-		{EDC528A1-5B1D-49EB-A86D-C9534A4F741B}.Debug|x86.Build.0 = Debug|x86
-		{EDC528A1-5B1D-49EB-A86D-C9534A4F741B}.Release|x86.ActiveCfg = Release|x86
-		{EDC528A1-5B1D-49EB-A86D-C9534A4F741B}.Release|x86.Build.0 = Release|x86
 		{71247A66-609A-4675-A0D4-836512275CD6}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{71247A66-609A-4675-A0D4-836512275CD6}.Debug|x86.Build.0 = Debug|Any CPU
 		{71247A66-609A-4675-A0D4-836512275CD6}.Release|x86.ActiveCfg = Release|Any CPU
 		{71247A66-609A-4675-A0D4-836512275CD6}.Release|x86.Build.0 = Release|Any CPU
+		{EDC528A1-5B1D-49EB-A86D-C9534A4F741B}.Debug|x86.ActiveCfg = Debug|x86
+		{EDC528A1-5B1D-49EB-A86D-C9534A4F741B}.Debug|x86.Build.0 = Debug|x86
+		{EDC528A1-5B1D-49EB-A86D-C9534A4F741B}.Release|x86.ActiveCfg = Release|x86
+		{EDC528A1-5B1D-49EB-A86D-C9534A4F741B}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
