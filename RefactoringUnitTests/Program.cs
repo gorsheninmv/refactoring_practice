@@ -1,0 +1,7 @@
+﻿namespace RefactoringUnitTests
+{
+  class Program
+  {
+    public static void Main() { }
+  }
+}
