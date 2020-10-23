@@ -1,9 +1,10 @@
-﻿namespace Refactoring
+﻿namespace Refactoring.Statistics
 {
   /// <summary>
   /// Задолженность клиента.
   /// </summary>
-  internal class DebtComponent : Informer, IDebt
+  /// <remarks>Компонент паттерна Композитор.</remarks>
+  internal class DebtComponent : Debt
   {
     #region Поля и свойства
 
@@ -11,12 +12,6 @@
     /// Описание задолженности.
     /// </summary>
     private readonly string description;
-
-    #endregion
-
-    #region IDebt
-
-    public virtual double Total { get; }
 
     #endregion
 
@@ -33,19 +28,9 @@
     /// </summary>
     /// <param name="debt">Задолженность.</param>
     /// <param name="description">Описание задолженности.</param>
-    public DebtComponent(string description, double debt)
+    public DebtComponent(string description, double debt) : base(debt)
     {
       this.description = description;
-      this.Total = debt;
-    }
-
-    /// <summary>
-    /// Конструктор.
-    /// </summary>
-    /// <param name="debt">Задолженность.</param>
-    protected DebtComponent(double debt)
-    {
-      this.Total = debt;
     }
 
     #endregion

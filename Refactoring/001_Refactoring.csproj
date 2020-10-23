@@ -44,20 +44,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer.cs" />
-    <Compile Include="DebtComponent.cs" />
-    <Compile Include="DebtComposite.cs" />
-    <Compile Include="IDebt.cs" />
-    <Compile Include="IInformer.cs" />
-    <Compile Include="Informer.cs" />
-    <Compile Include="InvalidMovieTypeException.cs" />
-    <Compile Include="IScore.cs" />
-    <Compile Include="Movie.cs" />
-    <Compile Include="MovieType.cs" />
+    <Compile Include="Movie\InvalidMovieTypeException.cs" />
+    <Compile Include="Movie\Movie.cs" />
+    <Compile Include="Movie\MovieType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rental.cs" />
-    <Compile Include="ScoreComponent.cs" />
-    <Compile Include="ScoreComposite.cs" />
+    <Compile Include="Statistics\Debt.cs" />
+    <Compile Include="Statistics\DebtComponent.cs" />
+    <Compile Include="Statistics\DebtComposite.cs" />
+    <Compile Include="Statistics\Score.cs" />
+    <Compile Include="Statistics\ScoreComponent.cs" />
+    <Compile Include="Statistics\ScoreComposite.cs" />
+    <Compile Include="Statistics\Statistics.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

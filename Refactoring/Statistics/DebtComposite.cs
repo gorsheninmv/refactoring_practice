@@ -2,19 +2,20 @@
 using System.Linq;
 using System.Text;
 
-namespace Refactoring
+namespace Refactoring.Statistics
 {
   /// <summary>
   /// Задолженоость клиента.
   /// </summary>
-  internal sealed class DebtComposite : DebtComponent
+  /// <remarks>Композит паттерна Композитор.</remarks>
+  internal sealed class DebtComposite : Debt
   {
     #region Поля и свойства
 
     /// <summary>
-    /// Очки, набранные потребителем.
+    /// Задолженность клиента.
     /// </summary>
-    private readonly List<IDebt> debts = new List<IDebt>();
+    private readonly List<Debt> debts = new List<Debt>();
 
     #endregion
 
@@ -24,7 +25,7 @@ namespace Refactoring
     /// Добавить очки.
     /// </summary>
     /// <param name="debt">Очки.</param>
-    public void AddComponent(IDebt debt)
+    public void AddComponent(Debt debt)
     {
       this.debts.Add(debt);
     }

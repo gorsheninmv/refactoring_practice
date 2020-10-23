@@ -1,19 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Refactoring
+namespace Refactoring.Statistics
 {
   /// <summary>
   /// Очки, набранные клиентом.
   /// </summary>
-  internal sealed class ScoreComposite : ScoreComponent
+  /// <remarks>Композит паттерна Композитор.</remarks>
+  internal sealed class ScoreComposite : Score
   {
     #region Поля и свойства
 
     /// <summary>
     /// Очки, набранные клиентом.
     /// </summary>
-    private readonly List<IScore> scores = new List<IScore>();
+    private readonly List<Score> scores = new List<Score>();
 
     #endregion
 
@@ -23,7 +24,7 @@ namespace Refactoring
     /// Добавить очки.
     /// </summary>
     /// <param name="score">Очки.</param>
-    public void AddComponent(IScore score)
+    public void AddComponent(Score score)
     {
       this.scores.Add(score);
     }

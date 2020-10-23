@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Refactoring.Statistics;
 
 namespace Refactoring
 {
@@ -43,7 +44,7 @@ namespace Refactoring
     /// Получить текущие набранные очки.
     /// </summary>
     /// <returns>Текущие набранные очки.</returns>
-    public IScore GetScore()
+    public Score GetScore()
     {
       var score = new ScoreComposite();
 
@@ -60,7 +61,7 @@ namespace Refactoring
     /// Текущая задолженность клиента.
     /// </summary>
     /// <returns>Текущая зожлженность.</returns>
-    public IDebt GetDebt()
+    public Debt GetDebt()
     {
       var debt = new DebtComposite();
 
