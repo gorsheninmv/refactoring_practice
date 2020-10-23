@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Text;
 using Refactoring.Statistics;
@@ -90,7 +91,8 @@ namespace Refactoring
     /// <returns>Очки за прокат.</returns>
     private uint CalculateRentScore(Rental rent)
     {
-      return 1;
+      var rentScore = 1u;
+      return rentScore;
     }
 
     /// <summary>
@@ -100,24 +102,17 @@ namespace Refactoring
     /// <returns>Бонусные очки за прокат.</returns>
     private uint CalculateRentBonusScore(Rental rent)
     {
-      switch (rent.Movie.Type)
+      uint rentBonusScore = rent.Movie.Type switch
       {
-        case MovieType.Regular:
-          if (rent.Time > TimeSpan.FromDays(7))
-            return 1;
-          break;
-        case MovieType.NewRelease:
-          if (rent.Time <= TimeSpan.FromDays(1))
-            return 1;
-          break;
-        case MovieType.Childrens:
-          return 0;
-        default:
-          var inner = new ArgumentException("Invalid argument value.", nameof(rent.Movie.Type));
-          throw new InvalidMovieTypeException(rent.Movie.Type, inner);
-      }
+        MovieType.Regular when rent.Time > TimeSpan.FromDays(7) => 1,
+        MovieType.Regular => 0,
+        MovieType.NewRelease when rent.Time <= TimeSpan.FromDays(1) => 1,
+        MovieType.NewRelease => 0,
+        MovieType.Childrens => 0,
+        _ => throw this.GetInvalidMovieTypeException(rent.Movie.Type, nameof(rent.Movie.Type))
+      };
 
-      return 0;
+      return rentBonusScore;
     }
 
     /// <summary>
@@ -127,18 +122,15 @@ namespace Refactoring
     /// <returns>Фиксированная часть платы за прокат фильма.</returns>
     private double CalculateFixRentCost(Rental rent)
     {
-      switch (rent.Movie.Type)
+      double fixRentCost = rent.Movie.Type switch
       {
-        case MovieType.Regular:
-          return 2;
-        case MovieType.Childrens:
-          return 1.5;
-        case MovieType.NewRelease:
-          return 0;
-        default:
-          var inner = new ArgumentException("Invalid argument value.", nameof(rent.Movie.Type));
-          throw new InvalidMovieTypeException(rent.Movie.Type, inner);
-      }
+        MovieType.Regular => 2,
+        MovieType.NewRelease => 0,
+        MovieType.Childrens => 1.5,
+        _ => throw this.GetInvalidMovieTypeException(rent.Movie.Type, nameof(rent.Movie.Type))
+      };
+
+      return fixRentCost;
     }
 
     /// <summary>
@@ -153,19 +145,16 @@ namespace Refactoring
       if (rent.Time <= freePeriod)
         return 0;
 
-      TimeSpan paidPeriod = rent.Time - freePeriod;
-
-      switch (rent.Movie.Type)
+      double costPerDay = rent.Movie.Type switch
       {
-        case MovieType.Regular:
-        case MovieType.Childrens:
-          return paidPeriod.Days * 1.5;
-        case MovieType.NewRelease:
-          return paidPeriod.Days * 3;
-        default:
-          var inner = new ArgumentException("Invalid argument value.", nameof(rent.Movie.Type));
-          throw new InvalidMovieTypeException(rent.Movie.Type, inner);
-      }
+        MovieType.Regular => 1.5,
+        MovieType.NewRelease => 3,
+        MovieType.Childrens => 1.5,
+        _ => throw this.GetInvalidMovieTypeException(rent.Movie.Type, nameof(rent.Movie.Type))
+      };
+
+      TimeSpan paidPeriod = rent.Time - freePeriod;
+      return paidPeriod.Days * costPerDay;
     }
 
     /// <summary>
@@ -175,15 +164,27 @@ namespace Refactoring
     /// <returns>Период, который не облагается переменной частью платы за прокат фильма.</returns>
     private TimeSpan GetFreePeriod(MovieType movieType)
     {
-      switch (movieType)
+      TimeSpan freePeriod = movieType switch
       {
-        case MovieType.Regular: return TimeSpan.FromDays(2);
-        case MovieType.NewRelease: return TimeSpan.Zero;
-        case MovieType.Childrens: return TimeSpan.FromDays(3);
-        default:
-          var inner = new ArgumentException("Invalid argument value.", nameof(movieType));
-          throw new InvalidMovieTypeException(movieType, inner);
-      }
+        MovieType.Regular => TimeSpan.FromDays(2),
+        MovieType.NewRelease => TimeSpan.Zero,
+        MovieType.Childrens => TimeSpan.FromDays(3),
+        _ => throw this.GetInvalidMovieTypeException(movieType, nameof(movieType))
+      };
+
+      return freePeriod;
+    }
+
+    /// <summary>
+    /// Возвращает исключение о неверном типе фильма.
+    /// </summary>
+    /// <param name="movieType">Тип фильма.</param>
+    /// <param name="argumentName">Имя аргумента, в котором был передан неверный тип фильма.</param>
+    /// <returns>Исключение о неверном типе фильма.</returns>
+    private Exception GetInvalidMovieTypeException(MovieType movieType, string argumentName)
+    {
+      var inner = new ArgumentException("Invalid argument value.", argumentName);
+      return new InvalidMovieTypeException(movieType, inner);
     }
 
     #endregion
