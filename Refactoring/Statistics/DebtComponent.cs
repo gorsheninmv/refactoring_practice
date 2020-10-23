@@ -26,8 +26,8 @@
     /// <summary>
     /// Конструктор.
     /// </summary>
-    /// <param name="debt">Задолженность.</param>
     /// <param name="description">Описание задолженности.</param>
+    /// <param name="debt">Задолженность.</param>
     public DebtComponent(string description, double debt) : base(debt)
     {
       this.description = description;

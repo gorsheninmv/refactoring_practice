@@ -3,7 +3,7 @@
   /// <summary>
   /// Статистика клиента.
   /// </summary>
-  /// <typeparam name="T">Тип данных, прдеставляющий статистику.</typeparam>
+  /// <typeparam name="T">Тип данных, прeдставляющий статистику.</typeparam>
   internal abstract class Statistics<T>
   {
     /// <summary>

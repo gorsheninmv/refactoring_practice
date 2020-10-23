@@ -5,7 +5,7 @@ using System.Text;
 namespace Refactoring.Statistics
 {
   /// <summary>
-  /// Задолженоость клиента.
+  /// Задолженность клиента.
   /// </summary>
   /// <remarks>Композит паттерна Композитор.</remarks>
   internal sealed class DebtComposite : Debt
