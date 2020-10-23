@@ -1,7 +1,7 @@
 ﻿namespace Refactoring.Statistics
 {
   /// <summary>
-  /// статистика клиента.
+  /// Статистика клиента.
   /// </summary>
   /// <typeparam name="T">Тип данных, прдеставляющий статистику.</typeparam>
   internal abstract class Statistics<T>
