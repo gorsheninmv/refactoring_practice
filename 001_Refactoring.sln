@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefactoringUnitTests", "RefactoringUnitTests\RefactoringUnitTests.csproj", "{71247A66-609A-4675-A0D4-836512275CD6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefactoringIntegrationTests", "RefactoringIntegrationTests\RefactoringIntegrationTests.csproj", "{71247A66-609A-4675-A0D4-836512275CD6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "001_Refactoring", "Refactoring\001_Refactoring.csproj", "{EDC528A1-5B1D-49EB-A86D-C9534A4F741B}"
 EndProject

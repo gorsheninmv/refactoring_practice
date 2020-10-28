@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Refactoring
+﻿namespace Refactoring
 {
   /// <summary>
   /// Класс, представляющий данные о прокате фильма.
@@ -15,9 +13,9 @@ namespace Refactoring
     public Movie Movie { get; }
 
     /// <summary>
-    /// Время проката.
+    /// Время проката в днях.
     /// </summary>
-    public TimeSpan Time { get; }
+    public uint TimeInDays { get; }
 
     #endregion
 
@@ -27,11 +25,11 @@ namespace Refactoring
     /// Конструктор.
     /// </summary>
     /// <param name="movie">Фильм.</param>
-    /// <param name="time">Вермя проката.</param>
-    public Rental(Movie movie, TimeSpan time)
+    /// <param name="timeInDays">Вермя проката в днях.</param>
+    public Rental(Movie movie, uint timeInDays)
     {
       this.Movie = movie;
-      this.Time = time;
+      this.TimeInDays = timeInDays;
     }
 
     #endregion

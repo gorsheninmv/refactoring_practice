@@ -1,4 +1,4 @@
-﻿namespace RefactoringUnitTests
+﻿namespace RefactoringIntegrationTests
 {
   class Program
   {

@@ -15,7 +15,7 @@
     /// <summary>
     /// Тип фильма.
     /// </summary>
-    public MovieType Type { get; set; }
+    public MovieType Type { get; }
 
     #endregion
 

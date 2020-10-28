@@ -27,9 +27,8 @@ namespace Refactoring
     /// Конструктор.
     /// </summary>
     /// <param name="movieType">Тип фильма.</param>
-    /// <param name="innerExceptopn">Внутренне исключение.</param>
-    public InvalidMovieTypeException(MovieType movieType, Exception innerExceptopn) :
-      base(CreateExceptionMessage(movieType), innerExceptopn) { }
+    public InvalidMovieTypeException(MovieType movieType) :
+      base(CreateExceptionMessage(movieType)) { }
 
     #endregion
   }

@@ -15,13 +15,13 @@ namespace Refactoring
       var customer = new Customer("Alex");
       var movie1 = new Movie("Matrix", MovieType.NewRelease);
       var movie2 = new Movie("Star track", MovieType.Regular);
-      var rental1 = new Rental(movie1, TimeSpan.FromDays(2));
-      var rental2 = new Rental(movie2, TimeSpan.FromDays(3));
+      var rental1 = new Rental(movie1, timeInDays: 2);
+      var rental2 = new Rental(movie2, timeInDays: 3);
 
       customer.AddRent(rental1);
       customer.AddRent(rental2);
 
-      Console.WriteLine(customer.GetReport());
+      Console.WriteLine(Report.Create(customer));
     }
   }
 }

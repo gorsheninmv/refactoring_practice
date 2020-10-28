@@ -1,13 +1,12 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using NSubstitute;
 using NUnit.Framework;
 using Refactoring;
 
-namespace RefactoringUnitTests
+namespace RefactoringIntegrationTests
 {
   [TestFixture]
-  internal sealed class CustomerTests
+  internal sealed class CustomerReportTests
   {
     private struct MovieForTest
     {
@@ -16,13 +15,13 @@ namespace RefactoringUnitTests
     }
 
     [Test]
-    public void GetReport_ReturnCorrectReport_ForMixedMovieTypes()
+    public void CreateReport_ReturnCorrectReport_ForMixedMovieTypes()
     {
       var customer = new Customer("Alex");
       var movie1 = new Movie("Matrix", MovieType.NewRelease);
       var movie2 = new Movie("Star track", MovieType.Regular);
-      var rental1 = new Rental(movie1, TimeSpan.FromDays(2));
-      var rental2 = new Rental(movie2, TimeSpan.FromDays(3));
+      var rental1 = new Rental(movie1, 2);
+      var rental2 = new Rental(movie2, 3);
 
       customer.AddRent(rental1);
       customer.AddRent(rental2);
@@ -33,40 +32,40 @@ namespace RefactoringUnitTests
       var score = 2u;
 
       string expected = this.GetExpectedInfo(customer.Name, totalDebt, score, testMovie1, testMovie2);
-      Assert.AreEqual(expected, customer.GetReport());
+      Assert.AreEqual(expected, Report.Create(customer));
     }
 
-    [TestCase(MovieType.Regular, 2, 2, 1u)]
-    [TestCase(MovieType.Regular, 8, 11, 2u)]
-    [TestCase(MovieType.NewRelease, 1, 3, 2u)]
-    [TestCase(MovieType.NewRelease, 5, 15, 1u)]
-    [TestCase(MovieType.Childrens, 1, 1.5, 1u)]
-    [TestCase(MovieType.Childrens, 5, 4.5, 1u)]
-    public void GetReport_ReturnCorrectReport_ForParticularMovieType(MovieType movieType, int rentDays,
+    [TestCase(MovieType.Regular, 2u, 2, 1u)]
+    [TestCase(MovieType.Regular, 8u, 11, 2u)]
+    [TestCase(MovieType.NewRelease, 1u, 3, 2u)]
+    [TestCase(MovieType.NewRelease, 5u, 15, 1u)]
+    [TestCase(MovieType.Childrens, 1u, 1.5, 1u)]
+    [TestCase(MovieType.Childrens, 5u, 4.5, 1u)]
+    public void CreateReport_ReturnCorrectReport_ForParticularMovieType(MovieType movieType, uint rentDays,
       double expectedCost, uint score)
     {
       var customer = new Customer("Foo");
       var movie = new Movie("Bar", movieType);
-      var rental = new Rental(movie, TimeSpan.FromDays(rentDays));
+      var rental = new Rental(movie, rentDays);
 
       customer.AddRent(rental);
 
       var testMovie1 = new MovieForTest { Title = movie.Title, Cost = expectedCost };
 
       string expected = this.GetExpectedInfo(customer.Name, expectedCost, score, testMovie1);
-      Assert.AreEqual(expected, customer.GetReport());
+      Assert.AreEqual(expected, Report.Create(customer));
     }
 
     [Test]
-    public void GetReport_ThrowsException_IfInvalidMovieType()
+    public void CreateReport_ThrowsException_IfInvalidMovieType()
     {
       var customer = new Customer(Arg.Any<string>());
       var movie = new Movie(Arg.Any<string>(), MovieType.None);
-      var rental = new Rental(movie, TimeSpan.FromDays(Arg.Any<int>()));
+      var rental = new Rental(movie, timeInDays: Arg.Any<uint>());
 
       customer.AddRent(rental);
 
-      Assert.Catch<InvalidMovieTypeException>(() => customer.GetReport());
+      Assert.Catch<InvalidMovieTypeException>(() => Report.Create(customer));
     }
 
     private string GetExpectedInfo(string customerName,
